@@ -4,8 +4,9 @@ import { logIn } from 'redux/auth/operations';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import { ClipLoader } from 'react-spinners'; 
-
 import css from '../../components/LoginForm/LoginForm.module.css';
+
+
 
 export const LoginForm = () => {
   const [focusEmail, setFocusfocusEmail] = useState('');
@@ -84,12 +85,13 @@ export const LoginForm = () => {
         </div>
         <button type="submit" className={css.btn} disabled={isLoading}>
           {isLoading ? (
-            <ClipLoader color="#ffffff" loading={true} size={20} />
+            <ClipLoader color="#ff0000" loading={true} size={20} />
           ) : (
             'Log In'
           )}
         </button>
       </form>
+
     </div>
   );
 };
