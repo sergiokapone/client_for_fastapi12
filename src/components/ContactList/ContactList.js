@@ -19,6 +19,7 @@ export const ContactList = () => {
       <thead>
         <tr>
           <th>Name</th>
+          <th>Last Name</th>
           <th>Number</th>
           <th>Email</th>
           <th>Birthday</th>
@@ -28,11 +29,12 @@ export const ContactList = () => {
       <tbody>
         {visibleContacts.length > 0 &&
           visibleContacts.map(contact => {
-            const { id, first_name, phone_number, email, birthday } =
+            const { id, first_name, last_name, phone_number, email, birthday } =
               contact.Contact;
             return (
               <tr className={css.contactRow} key={id}>
                 <td>{first_name}</td>
+                <td>{last_name}</td>
                 <td>{phone_number}</td>
                 <td>{email}</td>
                 <td>{birthday}</td>

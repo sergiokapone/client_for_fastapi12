@@ -12,6 +12,7 @@ const notifyError = name => toast.error(`${name} is already in contacts`);
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
+  const [lname, setLName] = useState('');
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -28,6 +29,9 @@ export const ContactForm = () => {
     switch (name) {
       case 'name':
         setName(value);
+        break;
+      case 'lname':
+        setLName(value);
         break;
       case 'number':
         setNumber(value);
@@ -54,8 +58,9 @@ export const ContactForm = () => {
       notifyError(name);
       return;
     }
-    dispatch(addContact({ name, number, email }));
+    dispatch(addContact({ name, lname, number, email, birthday }));
     setName('');
+    setLName('');
     setNumber('');
     setEmail('');
     setBirthday('');
@@ -63,6 +68,7 @@ export const ContactForm = () => {
 
   const handleFocus = e => {
     if (e.currentTarget.name === 'name') setFocusName('name');
+    if (e.currentTarget.name === 'lname') setFocusName('lname');
     if (e.currentTarget.name === 'number') setFocusNumber('number');
     if (e.currentTarget.name === 'email') setFocusEmail('email');
     if (e.currentTarget.name === 'email') setFocusBirthday('birthday');
@@ -70,6 +76,7 @@ export const ContactForm = () => {
 
   const handleBlur = e => {
     if (e.target.value === '' && e.target.name === 'name') setFocusName('');
+    if (e.target.value === '' && e.target.lname === 'lname') setFocusName('');
     if (e.target.value === '' && e.target.name === 'number') setFocusNumber('');
     if (e.target.value === '' && e.target.name === 'email') setFocusEmail('');
     if (e.target.value === '' && e.target.name === 'email')
@@ -93,10 +100,34 @@ export const ContactForm = () => {
             <input
               type="text"
               name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
               value={name}
+              onChange={handleChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              className={css.input}
+            />
+          </div>
+        </div>
+        <div
+          className={`${css.input_div} ${css.pass} ${
+            focusName === 'lname' && css.focus
+          }`}
+        >
+          <div className={css.i}>
+            <BiUser className={css.before} />
+            <i className={`${css.fas} ${css.fa_lock}`}></i>
+          </div>
+          <div className={css.div}>
+            <h5>Last Name</h5>
+            <input
+              type="text"
+              name="lname"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+              value={lname}
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
