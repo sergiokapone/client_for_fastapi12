@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/gclient_for_fastapi12/static/css/main.30ab0131.css",
+    "main.js": "/gclient_for_fastapi12/static/js/main.155142e3.js",
+    "static/media/wave.png": "/gclient_for_fastapi12/static/media/wave.40d1887aeaea7ecd70cb.png",
+    "static/media/bg.png": "/gclient_for_fastapi12/static/media/bg.0b10375ad1abd9f32cbe.png",
+    "index.html": "/gclient_for_fastapi12/index.html",
+    "main.30ab0131.css.map": "/gclient_for_fastapi12/static/css/main.30ab0131.css.map",
+    "main.155142e3.js.map": "/gclient_for_fastapi12/static/js/main.155142e3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.30ab0131.css",
+    "static/js/main.155142e3.js"
+  ]
+}
