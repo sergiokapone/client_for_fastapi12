@@ -65,12 +65,15 @@ export const ContactForm = () => {
     if (e.currentTarget.name === 'name') setFocusName('name');
     if (e.currentTarget.name === 'number') setFocusNumber('number');
     if (e.currentTarget.name === 'email') setFocusEmail('email');
+    if (e.currentTarget.name === 'email') setFocusBirthday('birthday');
   };
 
   const handleBlur = e => {
     if (e.target.value === '' && e.target.name === 'name') setFocusName('');
     if (e.target.value === '' && e.target.name === 'number') setFocusNumber('');
     if (e.target.value === '' && e.target.name === 'email') setFocusEmail('');
+    if (e.target.value === '' && e.target.name === 'email')
+      setFocusBirthday('');
   };
 
   return (
