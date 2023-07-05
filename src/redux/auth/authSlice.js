@@ -11,18 +11,17 @@ const initialState = {
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {},
   extraReducers: builder =>
     builder
-      .addCase(register.pending, state => state)
       .addCase(register.fulfilled, (state, action) => {
-        console.log(action.payload.user);
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.access_token; // сохраняем token
         state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.token = action.payload.access_token; // сохраняем token
         state.isLoggedIn = true;
       })
       .addCase(logOut.fulfilled, state => {
@@ -30,15 +29,9 @@ export const authSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
         state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
-      .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
       }),
 });
