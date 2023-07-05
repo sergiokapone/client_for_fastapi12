@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/operations';
 import { HiOutlineMail } from 'react-icons/hi';
 import { RiLockPasswordLine } from 'react-icons/ri';
+import { ClipLoader } from 'react-spinners'; 
 
 import css from '../../components/LoginForm/LoginForm.module.css';
 
@@ -10,6 +11,7 @@ export const LoginForm = () => {
   const [focusEmail, setFocusfocusEmail] = useState('');
   const [focusPassword, setFocusPassword] = useState('');
   const dispatch = useDispatch();
+  const isLoading = useSelector(state => state.auth.isLoading);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -28,8 +30,8 @@ export const LoginForm = () => {
     if (e.currentTarget.name === 'email') setFocusfocusEmail('email');
     if (e.currentTarget.name === 'password') setFocusPassword('password');
   };
-  const handleBlur = (e) => {
-    
+
+  const handleBlur = e => {
     if (e.target.value === '' && e.target.name === 'email')
       setFocusfocusEmail('');
     if (e.target.value === '' && e.target.name === 'password')
@@ -51,7 +53,6 @@ export const LoginForm = () => {
           </div>
           <div className={css.div}>
             <h5>Email</h5>
-
             <input
               type="email"
               onFocus={handleFocus}
@@ -81,8 +82,12 @@ export const LoginForm = () => {
             />
           </div>
         </div>
-        <button type="submit" className={css.btn}>
-          Log In
+        <button type="submit" className={css.btn} disabled={isLoading}>
+          {isLoading ? (
+            <ClipLoader color="#ffffff" loading={true} size={20} />
+          ) : (
+            'Log In'
+          )}
         </button>
       </form>
     </div>

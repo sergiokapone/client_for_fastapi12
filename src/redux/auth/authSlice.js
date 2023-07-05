@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   isLoggedIn: false,
   isRefreshing: false,
+  error: null,
 };
 
 export const authSlice = createSlice({
@@ -24,10 +25,17 @@ export const authSlice = createSlice({
         state.token = action.payload.access_token; // сохраняем token
         state.isLoggedIn = true;
       })
-      .addCase(logOut.fulfilled, state => {
-        state.user = { name: null, email: null };
+      .addCase(logOut.fulfilled, (state, action) => {
+        state.user = { username: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        state.error = action.payload;
+      })
+      .addCase(logOut.rejected, (state, action) => {
+        state.user = { username: null, email: null };
+        state.token = null;
+        state.isLoggedIn = false;
+        state.error = action.payload;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
