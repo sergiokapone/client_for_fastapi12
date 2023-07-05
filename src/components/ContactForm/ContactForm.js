@@ -11,9 +11,9 @@ import toast from 'react-hot-toast';
 const notifyError = name => toast.error(`${name} is already in contacts`);
 
 export const ContactForm = () => {
-  const [name, setName] = useState('');
-  const [lname, setLName] = useState('');
-  const [number, setNumber] = useState('');
+  const [first_name, setName] = useState('');
+  const [last_name, setLName] = useState('');
+  const [phone_number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
   const [focusName, setFocusName] = useState('');
@@ -52,13 +52,15 @@ export const ContactForm = () => {
 
     if (
       contacts.find(
-        el => el.Contact.first_name.toLowerCase() === name.toLowerCase()
+        el => el.first_name.toLowerCase() === first_name.toLowerCase()
       )
     ) {
-      notifyError(name);
+      notifyError(first_name);
       return;
     }
-    dispatch(addContact({ name, lname, number, email, birthday }));
+    dispatch(
+      addContact({ first_name, last_name, phone_number, email, birthday })
+    );
     setName('');
     setLName('');
     setNumber('');
@@ -102,7 +104,7 @@ export const ContactForm = () => {
               name="name"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
-              value={name}
+              value={first_name}
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -127,7 +129,7 @@ export const ContactForm = () => {
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
               title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
               required
-              value={lname}
+              value={last_name}
               onChange={handleChange}
               onFocus={handleFocus}
               onBlur={handleBlur}
@@ -153,7 +155,7 @@ export const ContactForm = () => {
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
               required
               onChange={handleChange}
-              value={number}
+              value={phone_number}
               onFocus={handleFocus}
               onBlur={handleBlur}
               className={css.input}

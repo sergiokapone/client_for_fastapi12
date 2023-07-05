@@ -11,7 +11,7 @@ export const ContactList = () => {
 
   const normalizedFilter = filter.toLocaleLowerCase();
   const visibleContacts = contacts.filter(contact =>
-    contact.Contact.first_name.toLowerCase().includes(normalizedFilter)
+    contact.first_name.toLowerCase().includes(normalizedFilter)
   );
 
   return (
@@ -30,7 +30,7 @@ export const ContactList = () => {
         {visibleContacts.length > 0 &&
           visibleContacts.map(contact => {
             const { id, first_name, last_name, phone_number, email, birthday } =
-              contact.Contact;
+              contact;
             return (
               <tr className={css.contactRow} key={id}>
                 <td>{first_name}</td>
