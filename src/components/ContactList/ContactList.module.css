@@ -1,0 +1,20 @@
+.contact_item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.contactTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.contactTable th,
+.contactTable td {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.contactTable th {
+  background-color: #f2f2f2;
+}
