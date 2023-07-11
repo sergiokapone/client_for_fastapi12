@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'https://fastapi12.onrender.com';
+// axios.defaults.baseURL = 'http://localhost:8000';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',

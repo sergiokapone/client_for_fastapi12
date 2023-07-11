@@ -3,6 +3,12 @@
   font-size: 20px;
 }
 
+.avatar {
+  display: inline; /* Чтобы применить стили к изображению */
+  margin: 0 auto; /* Центрирование изображения */
+  max-width: 50px; /* Уменьшение размера изображения */
+}
+
 .btn {
   display: block;
   outline: none;

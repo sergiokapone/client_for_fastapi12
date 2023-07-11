@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 axios.defaults.baseURL = 'https://fastapi12.onrender.com';
+// axios.defaults.baseURL = 'http://localhost:8000';
 
 // Utility to add JWT
 const setAuthHeader = token => {
@@ -39,7 +40,6 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     const formData = new FormData();
-    console.log(credentials);
 
     Object.entries(credentials).forEach(([key, value]) => {
       formData.append(key, value);
@@ -57,6 +57,7 @@ export const logIn = createAsyncThunk(
       const res = await axios.post('/users/login', formData, { headers });
       // After successful login, add the token to the HTTP header
       setAuthHeader(res.data.access_token);
+      console.log('>>>', res.data);
       return res.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

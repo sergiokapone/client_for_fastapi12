@@ -19,7 +19,7 @@ export const UserMenu = () => {
         >
           Logout
         </button>
-        <p className={css.user}>{user.email}</p>
+        <p className={css.user}> <img className={css.avatar} src={user.avatar} alt={ user.username } /> {user.email}</p>
       </>
     );
 }
